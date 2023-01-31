@@ -17,8 +17,6 @@ namespace WebAPI.Extensions
         {
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
             else
