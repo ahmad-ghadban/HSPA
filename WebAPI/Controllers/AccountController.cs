@@ -36,7 +36,20 @@ namespace WebAPI.Controllers
             return Ok(loginRes);
         }
 
-        private string CreateJWT(User user)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(LoginReqDto loginReq)
+        {
+            if (await uow.UserRepository.UserAlreadyExists(loginReq.UserName))
+            {
+                return BadRequest("User already exists, please try something else");
+            }
+
+            uow.UserRepository.Register(loginReq.UserName, loginReq.Password);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+
+            private string CreateJWT(User user)
         {
             var secretKey = configuration.GetSection("AppSettings:Key").Value;
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
