@@ -21,10 +21,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-// var env = app.Environment;
+var env = app.Environment;
 // Configure the HTTP request pipeline.
-// app.ConfigureExceptiionHandler(env);
-app.UseMiddleware<ExceptionMiddleware>();
+app.ConfigureExceptiionHandler(env);
+// app.ConfigureBuiltinExceptiionHandler(env);
 app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthorization();
 
