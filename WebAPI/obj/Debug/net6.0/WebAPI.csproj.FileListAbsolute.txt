@@ -1,5 +1,4 @@
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\appsettings.json
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\WebAPI.exe
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\WebAPI.deps.json
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\WebAPI.runtimeconfig.json
