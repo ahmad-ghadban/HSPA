@@ -91,3 +91,4 @@ C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Json
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\aghadban\Desktop\HSPA\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
