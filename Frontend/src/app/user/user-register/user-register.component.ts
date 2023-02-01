@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/model/user';
+import { UserForRegister, UserForLogin } from 'src/app/model/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,9 +13,9 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 export class UserRegisterComponent implements OnInit {
 
   registerationForm!: FormGroup;
-  user: User;
+  user: UserForRegister;
   userSubmitted: boolean;
-  constructor(private fb: FormBuilder, private userService: UserService, private alertify: AlertifyService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     // this.registerationForm = new FormGroup({
@@ -68,17 +68,18 @@ export class UserRegisterComponent implements OnInit {
     this.userSubmitted = true;
     if (this.registerationForm.valid){
       // this.user = Object.assign(this.user, this.registerationForm.value);
-      this.userService.addUser(this.userData());
-      this.registerationForm.reset();
-      this.userSubmitted = false;
-      this.alertify.success('Congrats, you are successfylly registered');
-    } else {
-      this.alertify.error("Kindly provide the required fields");
-
+      this.authService.registerUser(this.userData()).subscribe(() =>{
+        this.registerationForm.reset();
+        this.userSubmitted = false;
+        this.alertify.success('Congrats, you are successfylly registered');
+      }, error =>{
+        console.log(error);
+        this.alertify.error(error.error);
+      });
     }
   }
 
-  userData(): User {
+  userData(): UserForRegister {
     return this.user = {
       userName: this.userName.value,
       email: this.email.value,
