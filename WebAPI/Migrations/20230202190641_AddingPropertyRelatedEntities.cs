@@ -1,25 +1,33 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
 namespace WebAPI.Migrations
 {
-    /// <inheritdoc />
     public partial class AddingPropertyRelatedEntities : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<DateTime>(
+                name: "LastUpdatedOn",
+                table: "Users",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<int>(
+                name: "LastUpdatedBy",
+                table: "Users",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateTable(
                 name: "FurnishingTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastUpdateOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdatedBy = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -30,11 +38,11 @@ namespace WebAPI.Migrations
                 name: "PropertyTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastUpdateOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdatedBy = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -45,33 +53,33 @@ namespace WebAPI.Migrations
                 name: "Properties",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SellRent = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PropertyTypeId = table.Column<int>(type: "int", nullable: false),
-                    FurnishingTypeId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    BHK = table.Column<int>(type: "int", nullable: false),
-                    BuiltArea = table.Column<int>(type: "int", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    ReadyToMove = table.Column<bool>(type: "bit", nullable: false),
-                    CarpetArea = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FloorNo = table.Column<int>(type: "int", nullable: false),
-                    TotalFloors = table.Column<int>(type: "int", nullable: false),
-                    MainEntrance = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Security = table.Column<int>(type: "int", nullable: false),
-                    Gated = table.Column<bool>(type: "bit", nullable: false),
-                    Maintenance = table.Column<int>(type: "int", nullable: false),
-                    EstPossessionOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PostedBy = table.Column<int>(type: "int", nullable: false),
-                    LastUpdateOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdatedBy = table.Column<int>(type: "int", nullable: false)
+                    SellRent = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    PropertyTypeId = table.Column<int>(nullable: false),
+                    BHK = table.Column<int>(nullable: false),
+                    FurnishingTypeId = table.Column<int>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
+                    BuiltArea = table.Column<int>(nullable: false),
+                    CarpetArea = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
+                    Address2 = table.Column<string>(nullable: true),
+                    CityId = table.Column<int>(nullable: false),
+                    FloorNo = table.Column<int>(nullable: false),
+                    TotalFloors = table.Column<int>(nullable: false),
+                    ReadyToMove = table.Column<bool>(nullable: false),
+                    MainEntrance = table.Column<string>(nullable: true),
+                    Security = table.Column<int>(nullable: false),
+                    Gated = table.Column<bool>(nullable: false),
+                    Maintenance = table.Column<int>(nullable: false),
+                    EstPossessionOn = table.Column<DateTime>(nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    PostedOn = table.Column<DateTime>(nullable: false),
+                    PostedBy = table.Column<int>(nullable: false),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -89,15 +97,15 @@ namespace WebAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Properties_PropertyTypes_PropertyTypeId",
-                        column: x => x.PropertyTypeId,
-                        principalTable: "PropertyTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Properties_Users_PostedBy",
                         column: x => x.PostedBy,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Properties_PropertyTypes_PropertyTypeId",
+                        column: x => x.PropertyTypeId,
+                        principalTable: "PropertyTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -106,13 +114,13 @@ namespace WebAPI.Migrations
                 name: "Photos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsPrimary = table.Column<bool>(type: "bit", nullable: false),
-                    PropertyId = table.Column<int>(type: "int", nullable: false),
-                    LastUpdateOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdatedBy = table.Column<int>(type: "int", nullable: false)
+                    ImageUrl = table.Column<string>(nullable: false),
+                    IsPrimary = table.Column<bool>(nullable: false),
+                    PropertyId = table.Column<int>(nullable: false),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -151,7 +159,6 @@ namespace WebAPI.Migrations
                 column: "PropertyTypeId");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -171,9 +178,8 @@ namespace WebAPI.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "LastUpdateOn",
+                name: "LastUpdatedOn",
                 table: "Users");
-
         }
     }
 }

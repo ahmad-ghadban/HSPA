@@ -12,7 +12,7 @@ using WebAPI.Data;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230201195732_AddingPropertyRelatedEntities")]
+    [Migration("20230202190641_AddingPropertyRelatedEntities")]
     partial class AddingPropertyRelatedEntities
     {
         /// <inheritdoc />
@@ -37,7 +37,7 @@ namespace WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")
@@ -60,7 +60,7 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")
@@ -90,7 +90,7 @@ namespace WebAPI.Migrations
                     b.Property<bool>("IsPrimary")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")
@@ -153,7 +153,7 @@ namespace WebAPI.Migrations
                     b.Property<bool>("Gated")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")
@@ -215,7 +215,7 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")
@@ -237,6 +237,12 @@ namespace WebAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("Password")
                         .IsRequired()

@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
         {
             var city = mapper.Map<City>(cityDto);
             city.LastUpdatedBy = 1;
-            city.LastUpdateOn = DateTime.Now;
+            city.LastUpdatedOn = DateTime.Now;
 
             uow.CityRepository.AddCity(city);
             await uow.SaveAsync();
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Update not allowed");
             }
             cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdateOn = DateTime.Now;
+            cityFromDb.LastUpdatedOn = DateTime.Now;
             mapper.Map(cityDto, cityFromDb);
             await uow.SaveAsync();
             return StatusCode(200);
@@ -70,7 +70,7 @@ namespace WebAPI.Controllers
         {
             var cityFromDb = await uow.CityRepository.FindCity(id);
             cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdateOn = DateTime.Now;
+            cityFromDb.LastUpdatedOn = DateTime.Now;
             mapper.Map(cityDto, cityFromDb);
             await uow.SaveAsync();
             return StatusCode(200);
@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
         {
             var cityFromDb = await uow.CityRepository.FindCity(id);
             cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdateOn = DateTime.Now;
+            cityFromDb.LastUpdatedOn = DateTime.Now;
 
             cityToPatch.ApplyTo(cityFromDb, ModelState);
             await uow.SaveAsync();

@@ -12,7 +12,7 @@ namespace WebAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "LastUpdateOn",
+                name: "LastUpdatedOn",
                 table: "Cities",
                 type: "datetime2",
                 nullable: false,
@@ -30,7 +30,7 @@ namespace WebAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "LastUpdateOn",
+                name: "LastUpdatedOn",
                 table: "Cities");
 
             migrationBuilder.DropColumn(

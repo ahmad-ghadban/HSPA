@@ -33,7 +33,7 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")

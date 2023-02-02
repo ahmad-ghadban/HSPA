@@ -37,7 +37,7 @@ namespace WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastUpdateOn")
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LastUpdatedBy")
