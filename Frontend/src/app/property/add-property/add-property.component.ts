@@ -35,7 +35,7 @@ export class AddPropertyComponent implements OnInit {
     bhk: null,
     builtArea: null,
     city: '',
-    reatyToMove: null
+    readyToMove: null
   };
 
   constructor(private fb: FormBuilder, private router: Router, private housingService: HousingService, private alertify: AlertifyService) { }
@@ -228,7 +228,7 @@ export class AddPropertyComponent implements OnInit {
     this.property.totalFloors = this.TotalFloor.value;
     this.property.address = this.Address.value;
     this.property.address2 = this.LandMark.value;
-    this.property.reatyToMove = this.RTM.value;
+    this.property.readyToMove = this.RTM.value;
     this.property.age = this.AOP.value;
     this.property.gated = this.Gated.value;
     this.property.mainEntrance = this.MainEntrance.value;
