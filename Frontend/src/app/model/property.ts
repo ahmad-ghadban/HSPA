@@ -7,8 +7,8 @@ export class Property implements IPropertyBase {
   propertyType: string;
   bhk: number;
   furnishingType: string;
-  price: number;
-  builtArea: number;
+  price: string;
+  builtArea: string;
   carpetArea?: number;
   address: string;
   address2?: string;
@@ -21,7 +21,7 @@ export class Property implements IPropertyBase {
   security?: number;
   gated?: number;
   maintenance?: number;
-  estPossessionOn?: Date;
+  estPossessionOn?: string;
   image?: string;
   description?: string;
 }

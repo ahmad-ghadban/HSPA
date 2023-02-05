@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { IKeyValuePair } from 'src/app/model/IKeyValuePair';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -21,8 +22,8 @@ export class AddPropertyComponent implements OnInit {
   NextClicked: boolean;
   property = new Property();
 
-  propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
-  furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
+  propertyTypes: IKeyValuePair[];
+  furnishTypes: IKeyValuePair[];
   cityList: any[];
 
   propertyView: IPropertyBase = {
@@ -46,6 +47,14 @@ export class AddPropertyComponent implements OnInit {
       this.cityList = data;
       console.log(data);
     });
+
+    this.housingService.getPropertyTypes().subscribe(data => {
+      this.propertyTypes = data;
+    })
+
+    this.housingService.getFurnishingTypes().subscribe(data => {
+      this.furnishTypes = data;
+    })
   }
 
   CreateAddPropertyForm() {

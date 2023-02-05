@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { IPropertyBase } from '../model/ipropertybase';
 import { Property } from '../model/property';
+import { IKeyValuePair } from '../model/IKeyValuePair';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,14 @@ export class HousingService {
 
   getAllCities(): Observable<string[]> {
     return this.http.get<string[]>("http://localhost:5015/api/city");
+  }
+
+  getPropertyTypes(): Observable<IKeyValuePair[]> {
+    return this.http.get<IKeyValuePair[]>("http://localhost:5015/api/propertytype/list");
+  }
+
+  getFurnishingTypes(): Observable<IKeyValuePair[]> {
+    return this.http.get<IKeyValuePair[]>("http://localhost:5015/api/furnishingtype/list");
   }
 
   getProperty(id: number) {
@@ -43,7 +52,7 @@ export class HousingService {
     }
   }
 
-  getPropertyAge(dateofEstablishment: Date): string
+  getPropertyAge(dateofEstablishment: string): string
   {
       const today = new Date();
       const estDate = new Date(dateofEstablishment);
