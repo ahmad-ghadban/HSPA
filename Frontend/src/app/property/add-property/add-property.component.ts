@@ -35,8 +35,15 @@ export class AddPropertyComponent implements OnInit {
     furnishingType: null,
     bhk: null,
     builtArea: null,
+    floorNo: null,
     city: '',
-    readyToMove: null
+    readyToMove: null,
+    carpetArea: null,
+    address: null,
+    address2: null,
+    totalFloors: null,
+    mainEntrance: null,
+    description: null
   };
 
   constructor(private fb: FormBuilder, private router: Router, private housingService: HousingService, private alertify: AlertifyService) { }
@@ -204,15 +211,19 @@ export class AddPropertyComponent implements OnInit {
     this.NextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
-      this.housingService.addProperty(this.property);
-      this.alertify.success('Congrats, your property listed successfully on our website');
-      console.log(this.addPropertyForm);
+      this.housingService.addProperty(this.property).subscribe(
+        () => {
+          this.alertify.success('Congrats, your property listed successfully on our website');
+          console.log(this.addPropertyForm);
 
-      if(this.SellRent.value === '2') {
-        this.router.navigate(['/rent-property']);
-      } else {
-        this.router.navigate(['/']);
-      }
+          if(this.SellRent.value === '2') {
+            this.router.navigate(['/rent-property']);
+          } else {
+            this.router.navigate(['/']);
+          }
+        }
+      );
+
 
 
     } else {
@@ -224,10 +235,10 @@ export class AddPropertyComponent implements OnInit {
     this.property.id = this.housingService.newPropID();
     this.property.sellRent = +this.SellRent.value;
     this.property.bhk = this.BHK.value;
-    this.property.propertyType = this.PType.value;
+    this.property.propertyTypeId = this.PType.value;
     this.property.name = this.Name.value;
-    this.property.city = this.City.value;
-    this.property.furnishingType = this.FType.value;
+    this.property.cityId = this.City.value;
+    this.property.furnishingTypeId = this.FType.value;
     this.property.price = this.Price.value;
     this.property.security = this.Security.value;
     this.property.maintenance = this.Maintenance.value;

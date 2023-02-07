@@ -114,7 +114,7 @@
 
                   <div class="form-group col-12">
                     <label class="form-label">Carpet Area(in Sqr Feet)</label>
-                    <input type="text" formControlName="CarpetArea" class="form-control form-label">
+                    <input type="text" formControlName="CarpetArea" class="form-control form-label" #carpetArea1 (keyup)="propertyView.carpetArea=carpetArea1.value">
                   </div>
 
                   <div class="form-group col-12">
@@ -135,12 +135,13 @@
 
                 <div class="form-group col-12">
                   <label class="form-label">Total Floor</label>
-                  <input type="text" formControlName="TotalFloor" class="form-control form-label">
+                  <input type="text" formControlName="TotalFloor" class="form-control form-label" #floors1 (keyup)="propertyView.totalFloors=floors1.value">
                 </div>
 
                 <div class="form-group col-12">
                   <label class="form-label">Address</label>
-                  <input type="text" formControlName="Address" class="form-control form-label">
+                  <input type="text" formControlName="Address" class="form-control form-label"  #propName5
+                  (keyup)="propertyView.address=propName5.value">
                   <div class="error-block"
                   *ngIf="Address.invalid && (NextClicked || Address.touched)">
                     Please select address
@@ -149,7 +150,8 @@
 
                 <div class="form-group col-12">
                   <label class="form-label">Landmark</label>
-                  <input type="text" formControlName="LandMark" class="form-control form-label">
+                  <input type="text" formControlName="LandMark" class="form-control form-label" #propName6
+                  (keyup)="propertyView.address2=propName6.value">
                 </div>
 
                   <div class="form-group col-12">
@@ -165,8 +167,8 @@
                 <div class="form-group col-12">
                   <p>Ready to Move</p>
                   <div class="btn-group" btnRadioGroup formControlName="RTM">
-                    <label class="btn btn-outline-primary form-label" btnRadio=1 tabindex="0" role="button" (click)="propertyView.readyToMove=1" name="RTM">Yes</label>
-                    <label class="btn btn-outline-primary form-label" btnRadio=2 tabindex="0" role="button" (click)="propertyView.readyToMove=0" name="RTM">No</label>
+                    <label class="btn btn-outline-primary form-label" btnRadio=true tabindex="0" role="button" (click)="propertyView.readyToMove=true" name="RTM">Yes</label>
+                    <label class="btn btn-outline-primary form-label" btnRadio=false tabindex="0" role="button" (click)="propertyView.readyToMove=false" name="RTM">No</label>
                   </div>
                   <div class="error-block" *ngIf="RTM.invalid && NextClicked">
                     Please select ready to move
@@ -194,16 +196,16 @@
                 <div class="form-group col-12">
                   <p>Main Entrance</p>
                   <div class="btn-group" btnRadioGroup formControlName="MainEntrance">
-                    <label class="btn btn-outline-primary form-label" btnRadio=1 role="button" name="SellRent">East</label>
-                    <label class="btn btn-outline-primary form-label" btnRadio=2 role="button" name="SellRent">West</label>
-                    <label class="btn btn-outline-primary form-label" btnRadio=3 role="button" name="SellRent">South</label>
-                    <label class="btn btn-outline-primary form-label" btnRadio=4 role="button" name="SellRent">North</label>
+                    <label class="btn btn-outline-primary form-label" btnRadio=east role="button" name="SellRent" (click)="propertyView.mainEntrance='east'">East</label>
+                    <label class="btn btn-outline-primary form-label" btnRadio=west role="button" name="SellRent" (click)="propertyView.mainEntrance='west'">West</label>
+                    <label class="btn btn-outline-primary form-label" btnRadio=south role="button" name="SellRent" (click)="propertyView.mainEntrance='south'">South</label>
+                    <label class="btn btn-outline-primary form-label" btnRadio=north role="button" name="SellRent" (click)="propertyView.mainEntrance='north'">North</label>
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label class="form-label">Description</label>
-                  <textarea type="text"  formControlName="Description" class="form-control form-label" rows="6"></textarea>
+                  <textarea type="text"  formControlName="Description" class="form-control form-label" rows="6" #desc (keyup)="propertyView.description=desc.value"></textarea>
                 </div>
 
                 <div class="form-group col-12">
