@@ -29,13 +29,6 @@ export class UserLoginComponent implements OnInit {
         this.router.navigate(['/']);
       }
     );
-    // if (token) {
-    //   localStorage.setItem('token', token.userName)
-    //   this.alertify.success('Login Successful');
-    //   this.router.navigate(['/']);
-    // } else {
-    //   this.alertify.error('User id or password is wrong');
-    // }
   }
 
 }

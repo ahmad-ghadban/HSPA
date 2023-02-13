@@ -18,14 +18,6 @@ export class UserRegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
-    // this.registerationForm = new FormGroup({
-    //   userName: new FormControl(null, Validators.required),
-    //   email: new FormControl(null, [Validators.required, Validators.email]),
-    //   password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-    //   confirmPassword: new FormControl(null, [Validators.required]),
-    //   mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
-    // }, this.passwordMatchingValidator);
-    // this.registerationForm.controls['userName'].setValue('Default Value');
     this.createRegisterationForm();
   }
 
@@ -67,7 +59,6 @@ export class UserRegisterComponent implements OnInit {
     console.log(this.registerationForm);
     this.userSubmitted = true;
     if (this.registerationForm.valid){
-      // this.user = Object.assign(this.user, this.registerationForm.value);
       this.authService.registerUser(this.userData()).subscribe(() =>{
         this.registerationForm.reset();
         this.userSubmitted = false;
